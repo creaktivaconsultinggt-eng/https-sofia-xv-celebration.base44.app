@@ -12,9 +12,9 @@
   <meta content="Sofía Mansilla · Mis XV Años" property="og:title">
   <meta content="Acompáñanos a celebrar este día tan especial. Sábado 21 de noviembre de 2026." property="og:description">
   <meta content="images/55da7a44b_generated_image.png" property="og:image">
-  <script src="js/index-CITYMwQ9.js" type="module">
+  <script src="js/index-CMeJhTJw.js" type="module">
   </script>
-  <link crossorigin="" href="css/index-DTixcb0W.css" rel="stylesheet">
+  <link crossorigin="" href="css/index-CZaGkIz4.css" rel="stylesheet">
   <script type="module">
    if (window.self === window.top) {
   let lastPath = "";
@@ -151,8 +151,13 @@
       document.cookie = "base44_referrer_origin=; Max-Age=0" + attributes;
     }
     var meta = document.querySelector('meta[name="base44-visitor-tracking"]');
+    var signal = navigator.globalPrivacyControl;
     // Global Privacy Control opts the visitor out of tracking Base44 turned on by default.
-    if (meta && meta.getAttribute("data-source") === "default" && navigator.globalPrivacyControl) {
+    var optOut = meta && meta.getAttribute("data-source") === "default" && signal;
+    if (meta && meta.getAttribute("data-privacy-signals") === "honor") {
+      optOut = signal || navigator.doNotTrack === "1";
+    }
+    if (optOut) {
       clear();
     } else if (meta && meta.content === "consent") {
       window.__b44Consent.on(CONSENT_CATEGORY, write, clear);
