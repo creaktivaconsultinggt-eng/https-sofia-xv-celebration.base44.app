@@ -223,15 +223,5 @@
       window.open("https://maps.google.com/?q=14.736917,-90.585434", "_blank");
     }
   }, true);
-   // Ocultar únicamente el bloque de confirmación genérico de forma segura
-  window.addEventListener("DOMContentLoaded", () => {
-    const elementos = document.querySelectorAll("p, span");
-    elementos.forEach(el => {
-      if (el.textContent && el.textContent.includes("Nombre por confirmar")) {
-        const tarjeta = el.closest("div[class]");
-        if (tarjeta) tarjeta.style.display = "none";
-      }
-    });
-  });
 </script>
 </body></html>
