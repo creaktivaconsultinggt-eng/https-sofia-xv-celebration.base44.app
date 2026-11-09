@@ -223,15 +223,15 @@
       window.open("https://maps.google.com/?q=14.736917,-90.585434", "_blank");
     }
   }, true);
-    // Ocultar de forma permanente la sección "CONFIRMA CON" mediante un ciclo de monitoreo
-  setInterval(() => {
-    const divs = document.querySelectorAll("div, p, span");
-    divs.forEach(el => {
+   // Ocultar únicamente el bloque de confirmación genérico de forma segura
+  window.addEventListener("DOMContentLoaded", () => {
+    const elementos = document.querySelectorAll("p, span");
+    elementos.forEach(el => {
       if (el.textContent && el.textContent.includes("Nombre por confirmar")) {
-        let contenedor = el.closest("div");
-        if (contenedor) contenedor.style.display = "none";
+        const tarjeta = el.closest("div[class]");
+        if (tarjeta) tarjeta.style.display = "none";
       }
     });
-  }, 300);
+  });
 </script>
 </body></html>
