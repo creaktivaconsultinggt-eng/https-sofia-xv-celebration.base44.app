@@ -215,5 +215,13 @@
       }
     }
   }, true);
+     document.addEventListener("click", (e) => {
+    const btnMapa = e.target.closest("a, button");
+    if (btnMapa && btnMapa.textContent.toUpperCase().includes("VER EN GOOGLE MAPS")) {
+      e.preventDefault();
+      e.stopPropagation();
+      window.open("https://maps.google.com/?q=14.736917,-90.585434", "_blank");
+    }
+  }, true);
 </script>
 </body></html>
