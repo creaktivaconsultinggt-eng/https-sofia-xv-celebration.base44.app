@@ -176,6 +176,45 @@
  <body>
   <div id="root">
   </div>
+   <script>
+  const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS77qUmgLTrj9poAdgateuQQIgTv-8B3YnsN8FY_8ErH0OjAprPu8X-ksH5J6bOZ87_JzPadJnd1Bhb/pub?gid=2125764309&single=true&output=csv";
+
+  async function consultarInvitadoCSV(nombreBuscado) {
+    try {
+      const response = await fetch(CSV_URL);
+      const text = await response.text();
+      const filas = text.split("\n").map(l => l.split(","));
+      const encontrado = filas.find(f => 
+        f[1] && f[1].trim().toLowerCase().includes(nombreBuscado.trim().toLowerCase())
+      );
+
+      if (encontrado) {
+        const nombre = encontrado[1].trim();
+        const pases = encontrado[2] ? encontrado[2].trim() : "1";
+        alert(`¡Hola ${nombre}! Tienes ${pases} pase(s) asignado(s).`);
+      } else {
+        alert("No encontramos tu nombre en el listado. Por favor verifica la escritura.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Ocurrió un error al consultar la lista.");
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const btnBuscador = document.querySelector("button");
+    const inputNombre = document.querySelector("input");
+
+    if (btnBuscador && inputNombre) {
+      btnBuscador.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const valor = inputNombre.value;
+        if (valor) consultarInvitadoCSV(valor);
+      }, true);
+    }
+  });
+</script>
  
 
 </body></html>
