@@ -223,5 +223,16 @@
       window.open("https://maps.google.com/?q=14.736917,-90.585434", "_blank");
     }
   }, true);
+     // Ocultar la sección "CONFIRMA CON / Nombre por confirmar"
+  window.addEventListener("DOMContentLoaded", () => {
+    const elementos = document.querySelectorAll("div, span, p");
+    elementos.forEach(el => {
+      if (el.textContent && el.textContent.includes("Nombre por confirmar")) {
+        // Oculta el bloque completo que contiene este texto
+        let contenedor = el.closest("div");
+        if (contenedor) contenedor.style.display = "none";
+      }
+    });
+  });
 </script>
 </body></html>
