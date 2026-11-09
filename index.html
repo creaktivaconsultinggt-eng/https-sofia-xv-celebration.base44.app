@@ -201,20 +201,19 @@
     }
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const btnBuscador = document.querySelector("button");
-    const inputNombre = document.querySelector("input");
-
-    if (btnBuscador && inputNombre) {
-      btnBuscador.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const valor = inputNombre.value;
-        if (valor) consultarInvitadoCSV(valor);
-      }, true);
+  document.addEventListener("click", (e) => {
+    const target = e.target.closest("button");
+    if (target && target.textContent.toUpperCase().includes("VER MIS PASES")) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const input = document.querySelector("input");
+      if (input && input.value) {
+        consultarInvitadoCSV(input.value);
+      } else {
+        alert("Por favor escribe tu nombre y apellido primero.");
+      }
     }
-  });
+  }, true);
 </script>
- 
-
 </body></html>
