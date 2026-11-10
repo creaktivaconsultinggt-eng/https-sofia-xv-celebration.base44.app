@@ -243,4 +243,32 @@
   }
   setInterval(forzarCambio, 50);
 </script>
+   <script> 
+   const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS77qUmgLTrj9poAdgateuQQIgTv-8B3YnsN8FY_8ErH0OjAprPu8X-ksH5J6bOZ87_JzPadJnd1Bhb/pub?gid=2125764309&single=true&output=csv";
+    async function consultarInvitadoCSV(nombreBuscado) {
+      try {
+        const response = await fetch(CSV_URL);
+        const text = await response.text();
+        const filas = text.split("\n").map(l => l.split(","));
+        
+        // Busca el nombre en la segunda columna (índice 1) ignorando mayúsculas y espacios
+        const encontrado = filas.find(f => 
+          f[1] && f[1].trim().toLowerCase() === nombreBuscado.trim().toLowerCase()
+        );
+        
+        if (encontrado) {
+          return {
+            nombre: encontrado[1].trim(),
+            pases: parseInt(encontrado[2]) || 0,
+            confirmacion: encontrado[3] ? encontrado[3].trim() : ""
+          };
+        }
+        return null;
+      } catch (error) {
+        console.error("Error:", error);
+        return null;
+      }
+    }
+  </script>
+
 </body></html>
