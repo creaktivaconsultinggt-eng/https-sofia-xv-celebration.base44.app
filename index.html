@@ -224,9 +224,15 @@
     }
   }, true);
 </script>
-  window.addEventListener('DOMContentLoaded', () => {
-    // Busca en toda la página el texto incorrecto y lo reemplaza al instante
-    document.body.innerHTML = document.body.innerHTML.replace(/Granja Gran La Preciosa/g, 'Granja La Preciosa');
-  });
+  function cambiarTexto() {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    while (node = walker.nextNode()) {
+      if (node.nodeValue.includes('Granja Gran La Preciosa')) {
+        node.nodeValue = node.nodeValue.replace(/Granja Gran La Preciosa/g, 'Granja La Preciosa');
+      }
+    }
+  }
+  setInterval(cambiarTexto, 100);
 </script>
 </body></html>
