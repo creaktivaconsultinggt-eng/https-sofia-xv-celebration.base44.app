@@ -223,16 +223,17 @@
       window.open("https://maps.google.com/?q=14.736917,-90.585434", "_blank");
     }
   }, true);
-</script>
-  function cambiarTexto() {
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-    let node;
-    while (node = walker.nextNode()) {
-      if (node.nodeValue.includes('Granja Gran La Preciosa')) {
-        node.nodeValue = node.nodeValue.replace(/Granja Gran La Preciosa/g, 'Granja La Preciosa');
+<script>
+  function corregirUbicacion() {
+    const elementos = document.querySelectorAll('h1, h2, h3, h4, p, span, div');
+    elementos.forEach(el => {
+      if (el.childNodes.length === 1 && el.childNodes[0].nodeType === Node.TEXT_NODE) {
+        if (el.textContent.includes('Granja Gran La Preciosa')) {
+          el.textContent = el.textContent.replace('Granja Gran La Preciosa', 'Granja La Preciosa');
+        }
       }
-    }
+    });
   }
-  setInterval(cambiarTexto, 100);
+  setInterval(corregirUbicacion, 100);
 </script>
 </body></html>
