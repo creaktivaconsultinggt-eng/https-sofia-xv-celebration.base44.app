@@ -244,7 +244,7 @@
   setInterval(forzarCambio, 50);
 </script>
    <script> 
-   const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS77qUmgLTrj9poAdgateuQQIgTv-8B3YnsN8FY_8ErH0OjAprPu8X-ksH5J6bOZ87_JzPadJnd1Bhb/pub?gid=2125764309&single=true&output=csv";
+    const CSV_URL = "https://allorigins.win" + encodeURIComponent("https://docs.google.com/spreadsheets/d/e/2PACX-1vS77qUmgLTrj9poAdgateuQQIgTv-8B3YnsN8FY_8ErH0OjAprPu8X-ksH5J6bOZ87_JzPadJnd1Bhb/pub?gid=2125764309&single=true&output=csv");
     async function consultarInvitadoCSV(nombreBuscado) {
       try {
         const response = await fetch(CSV_URL);
