@@ -224,16 +224,18 @@
     }
   }, true);
 <script>
-  function corregirUbicacion() {
-    const elementos = document.querySelectorAll('h1, h2, h3, h4, p, span, div');
-    elementos.forEach(el => {
-      if (el.childNodes.length === 1 && el.childNodes[0].nodeType === Node.TEXT_NODE) {
-        if (el.textContent.includes('Granja Gran La Preciosa')) {
-          el.textContent = el.textContent.replace('Granja Gran La Preciosa', 'Granja La Preciosa');
-        }
+  function forzarCambio() {
+    const todos = document.querySelectorAll('*');
+    todos.forEach(el => {
+      if (el.childNodes.length > 0) {
+        el.childNodes.forEach(child => {
+          if (child.nodeType === Node.TEXT_NODE && child.nodeValue.includes('Granja Gran La Preciosa')) {
+            child.nodeValue = child.nodeValue.replace(/Granja Gran La Preciosa/g, 'Granja La Preciosa');
+          }
+        });
       }
     });
   }
-  setInterval(corregirUbicacion, 100);
+  setInterval(forzarCambio, 50);
 </script>
 </body></html>
